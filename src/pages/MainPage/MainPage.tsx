@@ -3,6 +3,7 @@ import useFetch from "../../hooks/useFetch/useFetch";
 import CharacterCard from '../../components/CharacterCard';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 export default function MainPage() {
   const { resultData, loading, error } = useFetch("https://rickandmortyapi.com/api/character")
@@ -32,7 +33,16 @@ export default function MainPage() {
 
   return (
     <>  
-    <div className='p-[5vw]  bg-zinc-800'>
+
+    <div className='w-full relative'>
+      <img className=' m-auto opacity-15 h-48 ' src="./backgroundcolor.svg" alt="" />
+      <h2 className=' absolute font-extrabold inset-0 flex items-center justify-center text-5xl opacity-85'>The Rick and Morty API
+      </h2>
+    </div>
+
+
+    
+    <div className='p-[5vw] px-[10vw] bg-zinc-800'>
     
     <InfiniteScroll
     dataLength={characters.length}
@@ -47,13 +57,13 @@ export default function MainPage() {
 >
   <div className='grid  gap-5 lg:grid-cols-2 )'>
         {characters.map((character, index) => (
-          
-          <CharacterCard key={index} item={character} />
+          <Link to={`/detail/${character.id}`}>
+            <CharacterCard key={index} item={character}/>
+          </Link>
         ))}
     </div>
       </InfiniteScroll>
     </div>
-
   </>
 )
 }
