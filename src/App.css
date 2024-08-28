@@ -1,0 +1,8 @@
+a:hover{
+  color: #FF9800 ;
+}
+
+::selection{
+  color: #FF9800 ;
+  background: black;
+}
