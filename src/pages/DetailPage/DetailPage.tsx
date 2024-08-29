@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { useParams, Link } from 'react-router-dom';
+import React from 'react'
+import { useParams } from 'react-router-dom';
 import useFetch from '../../hooks/useFetch/useFetch';
 import EpisodeCard from "../../components/EpisodeCard"
 export default function DetailPage() {
