@@ -9,6 +9,7 @@ export default function MainPage() {
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
   const [totalPages, setTotalPages] = useState(1);
+  const [searchFil, setSearchFil] = useState("");
 
   const fetchData = async () => {
     if (page == totalPages + 1) {
@@ -29,6 +30,10 @@ export default function MainPage() {
     fetchData();
   }, []);
 
+  const searchFilter = characters.filter((user) =>
+    user.name.toLowerCase().includes(searchFil.toLowerCase())
+  );
+
   return (
     <>
       <div className="w-full relative">
@@ -43,19 +48,25 @@ export default function MainPage() {
       </div>
 
       <div className=" bg-zinc-800">
+        <input
+          className=" w-full h-8 text-center m-auto font-bold animate-pulse hover:animate-none focus:animate-none"
+          placeholder="Character Search"
+          onChange={(e) => setSearchFil(e.target.value)}
+          type="text"
+        />
         <InfiniteScroll
           dataLength={characters.length}
           next={fetchData}
           hasMore={hasMore}
-          loader={<h4>Loading...</h4>}
+          loader={<h4 className="text-center text-white">Loading...</h4>}
           endMessage={
-            <p style={{ textAlign: "center" }}>
-              <b>Yay! You have seen it all</b>
+            <p className=" text-center text-white">
+              <b>You have seen it all</b>
             </p>
           }
         >
           <div className="grid p-24 py-16 gap-5 lg:grid-cols-2">
-            {characters.map((character, index) => (
+            {searchFilter.map((character, index) => (
               <Link to={`/detail/${character.id}`}>
                 <CharacterCard key={index} item={character} />
               </Link>

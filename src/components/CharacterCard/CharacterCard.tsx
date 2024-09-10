@@ -5,11 +5,11 @@ export default function CharacterCard({ item }) {
   const { resultData, loading, error } = useFetch(item.episode[0]);
 
   return (
-    <div className="rounded-xl border-yellow-500 border-1 bg-zinc-700 flex z-1 hover:animate-pulse hover:bg-[rgb(0,255,100)] hover:shadow-[0px_5px_70px_20px_rgb(0,255,100)]">
-      <img className="rounded-l-xl h-36" src={item.image} alt="" />
+    <div className="rounded-xl border-yellow-500 border-1 bg-zinc-700 lg:flex z-1 hover:animate-pulse hover:bg-[rgb(0,255,100)] hover:shadow-[0px_5px_70px_20px_rgb(0,255,100)]">
+      <img className="rounded-l-xl lg:h-36" src={item.image} alt="" />
       <div className="  text-white px-2">
         <p className="text-xl font-bold">{item.name}</p>
-        <div className="flex ">
+        <div className="lg:flex ">
           <div>
             {item.status == "Alive" ? (
               <div className=" h-2 w-2 rounded-md bg-green-700 m-1"></div>
